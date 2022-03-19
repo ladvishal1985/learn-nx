@@ -2,6 +2,8 @@
   "version": 2,
   "projects": {
     "mytodo": "apps/mytodo",
-    "mytodo-e2e": "apps/mytodo-e2e"
+    "mytodo-e2e": "apps/mytodo-e2e",
+    "mytodo-express": "apps/mytodo-express",
+    "mytodo-nest": "apps/mytodo-nest"
   }
 }

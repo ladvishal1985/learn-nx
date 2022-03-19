@@ -1,0 +1,52 @@
+{
+  "root": "apps/mytodo-express",
+  "sourceRoot": "apps/mytodo-express/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/mytodo-express",
+        "main": "apps/mytodo-express/src/main.ts",
+        "tsConfig": "apps/mytodo-express/tsconfig.app.json",
+        "assets": ["apps/mytodo-express/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/mytodo-express/src/environments/environment.ts",
+              "with": "apps/mytodo-express/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:node",
+      "options": {
+        "buildTarget": "mytodo-express:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/mytodo-express/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/mytodo-express"],
+      "options": {
+        "jestConfig": "apps/mytodo-express/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

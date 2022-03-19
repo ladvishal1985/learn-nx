@@ -1,0 +1,52 @@
+{
+  "root": "apps/mytodo-nest",
+  "sourceRoot": "apps/mytodo-nest/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/mytodo-nest",
+        "main": "apps/mytodo-nest/src/main.ts",
+        "tsConfig": "apps/mytodo-nest/tsconfig.app.json",
+        "assets": ["apps/mytodo-nest/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/mytodo-nest/src/environments/environment.ts",
+              "with": "apps/mytodo-nest/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:node",
+      "options": {
+        "buildTarget": "mytodo-nest:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/mytodo-nest/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/mytodo-nest"],
+      "options": {
+        "jestConfig": "apps/mytodo-nest/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
